@@ -1,6 +1,8 @@
 package ar.utn.dds.copiame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +49,9 @@ public class CopiameAppIT {
 		// Ejecucion
 		analisis.procesar();
 		
+		//Chequeo intermedio
+		assertFalse(analisis.finalizado(),"El revisor aun no a revisado la copia");
+		
 		// Marco manualmente el valor de copia en un valor alto
 		// 1 --> no se copiaron  |  0 se copiaron y los docs son identicos
 		for (RevisionDocumento revision : revisor.getRevisar()) {
@@ -56,7 +61,7 @@ public class CopiameAppIT {
 		ResultadoLote resultado = analisis.resultado();
 		
 		// Chequeo
-		
+		assertTrue(analisis.finalizado());
 		assertEquals(0, resultado.getPosiblesCopias().size(),
 				"La revisión manual cambio el resultado de la posible copia, con lo que no se tiene que detectar copia alguna"); 
 		
