@@ -4,7 +4,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class ResultadoLote {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
 	private LocalDateTime fechaInicio;
 	private LocalDateTime fechaFin;
 
@@ -13,6 +24,18 @@ public class ResultadoLote {
 	public ResultadoLote() {
 		super();
 		this.posiblesCopias = new ArrayList<ParDocumentos>();
+	}
+
+	protected long getId() {
+		return id;
+	}
+
+	protected void setId(long id) {
+		this.id = id;
+	}
+
+	protected void setPosiblesCopias(List<ParDocumentos> posiblesCopias) {
+		this.posiblesCopias = posiblesCopias;
 	}
 
 	public LocalDateTime getFechaInicio() {
@@ -39,5 +62,5 @@ public class ResultadoLote {
 	public void agregarPar(ParDocumentos par) {
 		this.posiblesCopias.add(par);
 	}
-	
+
 }

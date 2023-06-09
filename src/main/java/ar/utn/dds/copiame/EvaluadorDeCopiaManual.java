@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EvaluadorDeCopiaManual implements EvaluadorDeCopia {
+public class EvaluadorDeCopiaManual extends EvaluadorDeCopia {
 
 	private List<Revisor> revisores;
 	private Double porcentajeRev;

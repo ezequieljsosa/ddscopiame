@@ -2,7 +2,7 @@ package ar.utn.dds.copiame;
 
 import java.util.List;
 
-public class EvaluadorDeCopiaAutomatico implements EvaluadorDeCopia {
+public class EvaluadorDeCopiaAutomatico extends EvaluadorDeCopia {
 
 	@Override
 	public void procesar(List<ParDocumentos> pares) {

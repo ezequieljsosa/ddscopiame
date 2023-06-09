@@ -1,7 +1,10 @@
 package ar.utn.dds.copiame;
 
+import javax.persistence.ManyToOne;
+
 public class RevisionDocumentoManual extends RevisionDocumento {
 
+	@ManyToOne
 	private Revisor revisor;
 	
 	public RevisionDocumentoManual(ParDocumentos par,Revisor revisor) {

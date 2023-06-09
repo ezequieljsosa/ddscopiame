@@ -1,11 +1,26 @@
 package ar.utn.dds.copiame;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.apache.commons.text.similarity.LevenshteinDistance;
 
+@Entity
 public class Documento {
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String autor;
 	private String contenido;
 		
+	
+	
+	protected Documento() {
+		super();
+	}
+
 	public Documento(String autor, String contenido) {
 		super();
 		this.autor = autor;

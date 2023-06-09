@@ -5,17 +5,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
 import org.paukov.combinatorics3.Generator;
 
+@Entity
 public class AnalsisDeCopia {
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long pk;
 	
 	private String id;
 	private float umbral;
+	@Transient
 	private Lote lote;
+	@OneToMany
+	@JoinColumn(name = "analisis_id")
 	private List<ParDocumentos> pares;
+	@OneToMany
+	@JoinColumn(name = "analisis_id")
 	private List<EvaluadorDeCopia> evaluadores;
+	@OneToOne
 	private ResultadoLote rl;
-		
+	
+	
+	
+	protected AnalsisDeCopia() {
+		super();
+	}
+
+
+
 	public AnalsisDeCopia(float umbral, Lote lote) {
 		super();
 		this.umbral = umbral;
@@ -27,6 +54,18 @@ public class AnalsisDeCopia {
 	
 	
 	
+	public long getPk() {
+		return pk;
+	}
+
+
+
+	public void setPk(long pk) {
+		this.pk = pk;
+	}
+
+
+
 	public String getId() {
 		return id;
 	}
