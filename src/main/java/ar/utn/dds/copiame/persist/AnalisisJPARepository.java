@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.persist;
 
 import java.util.Collection;
 
@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import ar.utn.dds.copiame.domain.AnalisisDeCopia;
 
 public class AnalisisJPARepository implements AnalsisRepository {
 
@@ -28,17 +30,17 @@ public class AnalisisJPARepository implements AnalsisRepository {
 	
 	
 	@Override
-	public void save(AnalsisDeCopia analisis) {
+	public void save(AnalisisDeCopia analisis) {
 		this.entityManager.persist(analisis);
 		
 	}
 
 	@Override
-	public AnalsisDeCopia findById(String id) {		
+	public AnalisisDeCopia findById(String id) {		
 		// Notar que esto no es la PK, queda poco consistente respecto al resto de las clases
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<AnalsisDeCopia> criteriaQuery = criteriaBuilder.createQuery(AnalsisDeCopia.class);
-		Root<AnalsisDeCopia> root = criteriaQuery.from(AnalsisDeCopia.class);
+		CriteriaQuery<AnalisisDeCopia> criteriaQuery = criteriaBuilder.createQuery(AnalisisDeCopia.class);
+		Root<AnalisisDeCopia> root = criteriaQuery.from(AnalisisDeCopia.class);
 
 		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("id"), id));
 
@@ -48,7 +50,7 @@ public class AnalisisJPARepository implements AnalsisRepository {
 	
 
 	@Override
-	public Collection<AnalsisDeCopia> all() {
+	public Collection<AnalisisDeCopia> all() {
 		return null;
 	}
 

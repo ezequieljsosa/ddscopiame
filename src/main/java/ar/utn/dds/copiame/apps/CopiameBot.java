@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.apps;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

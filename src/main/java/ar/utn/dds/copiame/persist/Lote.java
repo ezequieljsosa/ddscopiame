@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.persist;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import ar.utn.dds.copiame.domain.Documento;
 
 public class Lote {
 

@@ -1,8 +1,10 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.controllers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.persist.RevisorRepository;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 

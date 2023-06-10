@@ -1,5 +1,6 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.controllers;
 
+import ar.utn.dds.copiame.persist.AnalsisRepository;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 

@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.apps;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +6,12 @@ import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import ar.utn.dds.copiame.controllers.AnalisisAddController;
+import ar.utn.dds.copiame.controllers.AnalisisListController;
+import ar.utn.dds.copiame.controllers.RevisorGetController;
+import ar.utn.dds.copiame.controllers.RevisorPostController;
+import ar.utn.dds.copiame.persist.AnalisisInMemoryRepository;
+import ar.utn.dds.copiame.persist.AnalsisRepository;
 import io.javalin.Javalin;
 
 public class CopiameAPI {

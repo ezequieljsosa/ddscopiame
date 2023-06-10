@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +17,10 @@ import javax.persistence.Transient;
 
 import org.paukov.combinatorics3.Generator;
 
+import ar.utn.dds.copiame.persist.Lote;
+
 @Entity
-public class AnalsisDeCopia {
+public class AnalisisDeCopia {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long pk;
@@ -38,13 +40,13 @@ public class AnalsisDeCopia {
 	
 	
 	
-	protected AnalsisDeCopia() {
+	protected AnalisisDeCopia() {
 		super();
 	}
 
 
 
-	public AnalsisDeCopia(float umbral, Lote lote) {
+	public AnalisisDeCopia(float umbral, Lote lote) {
 		super();
 		this.umbral = umbral;
 		this.lote = lote;

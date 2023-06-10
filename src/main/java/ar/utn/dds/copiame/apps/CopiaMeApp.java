@@ -1,9 +1,14 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.apps;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import ar.utn.dds.copiame.domain.AnalisisDeCopia;
+import ar.utn.dds.copiame.domain.ParDocumentos;
+import ar.utn.dds.copiame.domain.ResultadoLote;
+import ar.utn.dds.copiame.persist.Lote;
 
 public class CopiaMeApp {
 
@@ -35,7 +40,7 @@ public class CopiaMeApp {
 		
 		// Utilizo al dominio -- NO leo datos de otra fuente -- NO pido ni muestro información 
 		float umbral = 0.5f;
-		AnalsisDeCopia analisis = new AnalsisDeCopia(umbral, lote);		
+		AnalisisDeCopia analisis = new AnalisisDeCopia(umbral, lote);		
 		ResultadoLote resultado = analisis.resultado();
 		//--------------------
 		

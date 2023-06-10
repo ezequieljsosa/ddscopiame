@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;

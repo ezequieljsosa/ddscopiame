@@ -9,6 +9,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ar.utn.dds.copiame.domain.AnalisisDeCopia;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaAutomatico;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaManual;
+import ar.utn.dds.copiame.domain.ResultadoLote;
+import ar.utn.dds.copiame.domain.RevisionDocumento;
+import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.persist.Lote;
+
 public class CopiameAppIT {
 
 	@Test
@@ -18,7 +26,7 @@ public class CopiameAppIT {
 		lote.validar();
 		lote.cargar();
 		float umbral = 0.5f;
-		AnalsisDeCopia analisis = new AnalsisDeCopia(umbral, lote);	
+		AnalisisDeCopia analisis = new AnalisisDeCopia(umbral, lote);	
 		analisis.addEvaluador(new EvaluadorDeCopiaAutomatico());
 		
 		// Ejecucion
@@ -38,7 +46,7 @@ public class CopiameAppIT {
 		lote.validar();
 		lote.cargar();
 		float umbral = 0.4f;
-		AnalsisDeCopia analisis = new AnalsisDeCopia(umbral, lote);	
+		AnalisisDeCopia analisis = new AnalisisDeCopia(umbral, lote);	
 		analisis.addEvaluador(new EvaluadorDeCopiaAutomatico());
 		Revisor revisor = new Revisor();
 		List<Revisor> revisores = Arrays.asList(revisor);

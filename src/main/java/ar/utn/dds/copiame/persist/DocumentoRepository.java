@@ -1,6 +1,8 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.persist;
 
 import javax.persistence.EntityManager;
+
+import ar.utn.dds.copiame.domain.Documento;
 
 public class DocumentoRepository {
 

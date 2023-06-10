@@ -1,8 +1,10 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import ar.utn.dds.copiame.domain.Documento;
 
 public class DocumentoTest {
 	

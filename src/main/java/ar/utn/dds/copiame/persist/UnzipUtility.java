@@ -1,4 +1,4 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.persist;
 
 import java.io.*;
 import java.util.zip.ZipEntry;

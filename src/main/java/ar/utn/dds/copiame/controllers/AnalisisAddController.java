@@ -1,10 +1,17 @@
-package ar.utn.dds.copiame;
+package ar.utn.dds.copiame.controllers;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ar.utn.dds.copiame.domain.AnalisisDeCopia;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaAutomatico;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaManual;
+import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.persist.AnalsisRepository;
+import ar.utn.dds.copiame.persist.Lote;
+import ar.utn.dds.copiame.persist.UnzipUtility;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -30,7 +37,7 @@ public class AnalisisAddController implements Handler {
 		lote.validar();
 		lote.cargar();
 		float umbral = 0.5f;
-		AnalsisDeCopia analisis = new AnalsisDeCopia(umbral, lote);
+		AnalisisDeCopia analisis = new AnalisisDeCopia(umbral, lote);
 		analisis.addEvaluador(new EvaluadorDeCopiaAutomatico());
 		Revisor revisor = new Revisor();
 		List<Revisor> revisores = Arrays.asList(revisor);

@@ -16,6 +16,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.utn.dds.copiame.domain.AnalisisDeCopia;
+import ar.utn.dds.copiame.domain.Documento;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaAutomatico;
+import ar.utn.dds.copiame.domain.EvaluadorDeCopiaManual;
+import ar.utn.dds.copiame.domain.ResultadoLote;
+import ar.utn.dds.copiame.domain.RevisionDocumento;
+import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.persist.AnalisisJPARepository;
+import ar.utn.dds.copiame.persist.DocumentoRepository;
+import ar.utn.dds.copiame.persist.Lote;
+import ar.utn.dds.copiame.persist.RevisorRepository;
+
 public class PersistenceIT {
 
 	static EntityManagerFactory entityManagerFactory;
@@ -25,9 +37,7 @@ public class PersistenceIT {
 
 	@BeforeAll
 	public static void setUpClass() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("compiamedb"
-				
-				);
+		entityManagerFactory = Persistence.createEntityManagerFactory("compiamedb");
 	}
 
 	@BeforeEach
@@ -88,7 +98,7 @@ public class PersistenceIT {
 		lote.cargar();
 
 		float umbral = 0.4f;
-		AnalsisDeCopia analisis = new AnalsisDeCopia(umbral, lote);
+		AnalisisDeCopia analisis = new AnalisisDeCopia(umbral, lote);
 		analisis.setId(UUID.randomUUID().toString());
 		analisis.addEvaluador(new EvaluadorDeCopiaAutomatico());
 		
