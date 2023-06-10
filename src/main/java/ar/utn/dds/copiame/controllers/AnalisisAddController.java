@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import ar.utn.dds.copiame.domain.AnalisisDeCopia;
 import ar.utn.dds.copiame.domain.EvaluadorDeCopiaAutomatico;
 import ar.utn.dds.copiame.domain.EvaluadorDeCopiaManual;
 import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.persist.AnalisisJPARepository;
 import ar.utn.dds.copiame.persist.AnalsisRepository;
 import ar.utn.dds.copiame.persist.Lote;
 import ar.utn.dds.copiame.persist.UnzipUtility;
@@ -17,15 +21,19 @@ import io.javalin.http.Handler;
 
 public class AnalisisAddController implements Handler {
 
-	private AnalsisRepository repo;
+	private EntityManagerFactory entityManagerFactory;
 
-	public AnalisisAddController(AnalsisRepository repo) {
+	public AnalisisAddController(EntityManagerFactory entityManagerFactory) {
 		super();
-		this.repo = repo;
+		this.entityManagerFactory = entityManagerFactory;
 	}
 	
 	@Override
 	public void handle(Context ctx) throws Exception {
+		
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		AnalisisJPARepository repo = new AnalisisJPARepository(entityManager);
+
 		
 		// Proceso de parámetros de entrada
 		String destDirectory = "/tmp/unlugar";
@@ -45,11 +53,14 @@ public class AnalisisAddController implements Handler {
 		EvaluadorDeCopiaManual eval = new EvaluadorDeCopiaManual(revisores,1.0);
 		analisis.addEvaluador(eval);		
 		
-		// Proceso del lote
-		analisis.procesar();
+		// genero los pares de documentos del lote
+		analisis.generarPares();
 		
 		// Guardado
+		entityManager.getTransaction().begin();
 		repo.save(analisis);
+		entityManager.getTransaction().commit();
+		entityManager.close();
 		
 		// Armado de la respuesta
 		Map<String,String> rta = new HashMap<String, String>();

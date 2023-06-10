@@ -97,14 +97,15 @@ public class AnalisisDeCopia {
 		this.evaluadores.add(eval);
 	}
 	
-	public void procesar() {
+	public void generarPares() {
 		// Genero todos los pares de documentos Posibles
 		this.pares = Generator.combination(this.lote.getDocumentos())
 	       .simple(2)
 	       .stream()
 	       .map(t-> new ParDocumentos(t.get(0),t.get(1)) ) 
 	       .collect(Collectors.toList());
-		
+	}
+	public void procesar() {
 		// Armo el resultado procesando cada par
 		this.rl = new ResultadoLote();
 		rl.setFechaInicio(LocalDateTime.now());
