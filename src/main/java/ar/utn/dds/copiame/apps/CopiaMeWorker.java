@@ -41,34 +41,26 @@ public class CopiaMeWorker extends DefaultConsumer {
 		
 		// Confirmar la recepción del mensaje a la mensajeria
 		this.getChannel().basicAck(envelope.getDeliveryTag(), false);
-		String analisisId = new String(body, "UTF-8");
-		System.out.println("Demora..");
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("se recibio el siguiente payload:");
-		System.out.println( analisisId);
 		
-//		
-//		
-//		// Obtengo el analisis a procesar
-//		EntityManager entityManager = entityManagerFactory.createEntityManager();
-//		
-//		entityManager.getTransaction().begin();
-//		
-//		AnalisisJPARepository repo = new AnalisisJPARepository(entityManager);		
-//		
-//		AnalisisDeCopia ads = repo.findById(analisisId);
-//		
-//		// Proceso el analisis
-//		ads.procesar();
-//		
-//		
-//		entityManager.getTransaction().commit();
-//		entityManager.close();
-//		
+		// Leer el mejaje
+		String analisisId = new String(body, "UTF-8");
+		
+		// Obtengo el analisis a procesar
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
+		entityManager.getTransaction().begin();
+		
+		AnalisisJPARepository repo = new AnalisisJPARepository(entityManager);		
+		
+		AnalisisDeCopia ads = repo.findById(analisisId);
+		
+		// Proceso el analisis
+		ads.procesar();
+		
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
 	}
 
 	public static void main(String[] args) throws Exception {
