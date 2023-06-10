@@ -2,6 +2,9 @@ package ar.utn.dds.copiame;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class EvaluadorDeCopiaAutomatico extends EvaluadorDeCopia {
 
 	@Override

@@ -27,6 +27,21 @@ public class Documento {
 		this.contenido = contenido;
 	}
 
+	
+	
+	
+	public long getId() {
+		return id;
+	}
+
+	protected void setId(long id) {
+		this.id = id;
+	}
+
+	protected void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 	public String getAutor() {
 		return autor;
 	}

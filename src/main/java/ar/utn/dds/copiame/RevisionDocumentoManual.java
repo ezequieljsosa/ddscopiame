@@ -1,8 +1,16 @@
 package ar.utn.dds.copiame;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class RevisionDocumentoManual extends RevisionDocumento {
+
+	
+	
+	public RevisionDocumentoManual() {
+		super();
+	}
 
 	@ManyToOne
 	private Revisor revisor;

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Revisor {
@@ -15,14 +16,17 @@ public class Revisor {
 	private long id;
 	
 	private String nombre;
-	private List<RevisionDocumento> revisar;
+	
+	
+	@OneToMany(mappedBy = "revisor")	
+	private List<RevisionDocumentoManual> revisar;
 	
 	
 	
 
 	public Revisor() {
 		super();
-		this.revisar = new ArrayList<RevisionDocumento>();
+		this.revisar = new ArrayList<RevisionDocumentoManual>();
 	}
 
 	
@@ -47,15 +51,15 @@ public class Revisor {
 		this.nombre = nombre;
 	}
 
-	public List<RevisionDocumento> getRevisar() {
+	public List<RevisionDocumentoManual> getRevisar() {
 		return revisar;
 	}
 
-	public void setRevisar(List<RevisionDocumento> revisar) {
+	public void setRevisar(List<RevisionDocumentoManual> revisar) {
 		this.revisar = revisar;
 	}
 
-	public void addRevision(RevisionDocumento rev) {
+	public void addRevision(RevisionDocumentoManual rev) {
 		this.revisar.add(rev);
 	}
 

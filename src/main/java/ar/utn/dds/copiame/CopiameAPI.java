@@ -8,7 +8,7 @@ public class CopiameAPI {
 		Integer port = Integer.parseInt( System.getProperty("PORT", "8080"));
 		
 		Javalin app = Javalin.create().start(port);
-		AnalsisRepository repo = new AnalsisRepository();
+		AnalsisRepository repo = new AnalisisInMemoryRepository();
 		
 		app.get("/analisis", new AnalisisListController(repo));
 		app.post("/analisis", new AnalisisAddController(repo));

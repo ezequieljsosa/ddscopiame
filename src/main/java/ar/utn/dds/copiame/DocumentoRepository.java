@@ -19,7 +19,7 @@ public class DocumentoRepository {
 		this.entityManager = entityManager;
 	}
 	
-	private void save(Documento doc) {
+	public void save(Documento doc) {
 		this.entityManager.persist(doc);
 	}
 	

@@ -3,6 +3,7 @@ package ar.utn.dds.copiame;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +17,11 @@ public class ParDocumentos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Documento documento1;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Documento documento2;
-	@OneToMany(mappedBy = "par")
+	@OneToMany(mappedBy = "par",cascade = CascadeType.ALL)
 	private List<RevisionDocumento> revisiones;
 
 	protected ParDocumentos() {

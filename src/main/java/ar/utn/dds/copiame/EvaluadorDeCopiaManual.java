@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Entity;
+
+
+@Entity
 public class EvaluadorDeCopiaManual extends EvaluadorDeCopia {
 
 	private List<Revisor> revisores;
@@ -28,7 +32,7 @@ public class EvaluadorDeCopiaManual extends EvaluadorDeCopia {
 
 		for (ParDocumentos parDocumentos : subList) {
 			Revisor elegirRevisor = this.elegirRevisor();
-			RevisionDocumento rd = new RevisionDocumentoManual(parDocumentos, elegirRevisor());			
+			RevisionDocumentoManual rd = new RevisionDocumentoManual(parDocumentos, elegirRevisor());			
 			parDocumentos.addRevision(rd);
 			elegirRevisor.addRevision(rd);
 		}

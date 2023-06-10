@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,13 +27,13 @@ public class AnalsisDeCopia {
 	private float umbral;
 	@Transient
 	private Lote lote;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "analisis_id")
 	private List<ParDocumentos> pares;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "analisis_id")
 	private List<EvaluadorDeCopia> evaluadores;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private ResultadoLote rl;
 	
 	
