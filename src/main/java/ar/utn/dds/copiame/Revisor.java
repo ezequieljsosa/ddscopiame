@@ -31,7 +31,7 @@ public class Revisor {
 
 	
 	
-	protected long getId() {
+	public long getId() {
 		return id;
 	}
 

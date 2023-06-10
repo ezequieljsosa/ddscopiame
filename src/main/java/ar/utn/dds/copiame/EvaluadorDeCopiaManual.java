@@ -5,11 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 
 @Entity
 public class EvaluadorDeCopiaManual extends EvaluadorDeCopia {
-
+	@Transient
 	private List<Revisor> revisores;
 	private Double porcentajeRev;
 

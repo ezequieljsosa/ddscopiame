@@ -25,7 +25,9 @@ public class PersistenceIT {
 
 	@BeforeAll
 	public static void setUpClass() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("compiamedb");
+		entityManagerFactory = Persistence.createEntityManagerFactory("compiamedb"
+				
+				);
 	}
 
 	@BeforeEach
