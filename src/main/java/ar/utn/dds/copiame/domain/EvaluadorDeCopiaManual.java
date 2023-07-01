@@ -4,15 +4,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 
 @Entity
 public class EvaluadorDeCopiaManual extends EvaluadorDeCopia {
-	@Transient
+	
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Revisor> revisores;
 	private Double porcentajeRev;
+
+	
+	
+	public EvaluadorDeCopiaManual() {
+		super();
+		this.revisores = new ArrayList<>();
+	}
 
 	public EvaluadorDeCopiaManual(List<Revisor> revisores, Double porcentajeRev) {
 		super();

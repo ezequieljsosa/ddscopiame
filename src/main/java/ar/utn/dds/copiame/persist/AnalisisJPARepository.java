@@ -1,6 +1,7 @@
 package ar.utn.dds.copiame.persist;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -31,8 +32,9 @@ public class AnalisisJPARepository implements AnalsisRepository {
 	
 	@Override
 	public void save(AnalisisDeCopia analisis) {
-		this.entityManager.persist(analisis);
-		
+		String key = UUID.randomUUID().toString().substring(0, 5);
+		analisis.setId(key);
+		this.entityManager.persist(analisis);		
 	}
 
 	@Override
@@ -51,7 +53,18 @@ public class AnalisisJPARepository implements AnalsisRepository {
 
 	@Override
 	public Collection<AnalisisDeCopia> all() {
-		return null;
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        // Crear un CriteriaQuery
+        CriteriaQuery<AnalisisDeCopia> cq = cb.createQuery(AnalisisDeCopia.class);
+
+        // Definir la raíz de la consulta
+        Root<AnalisisDeCopia> root = cq.from(AnalisisDeCopia.class);
+
+        // Establecer la raíz en el CriteriaQuery
+        cq.select(root); 
+        
+		return entityManager.createQuery(cq).getResultList();
 	}
 
 }

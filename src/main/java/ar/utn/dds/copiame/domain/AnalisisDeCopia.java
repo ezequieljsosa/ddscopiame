@@ -17,6 +17,8 @@ import javax.persistence.Transient;
 
 import org.paukov.combinatorics3.Generator;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ar.utn.dds.copiame.persist.Lote;
 
 @Entity
@@ -116,21 +118,25 @@ public class AnalisisDeCopia {
 		
 	}
 	
+	@JsonProperty("resultado")
 	public ResultadoLote resultado() {
-		for (ParDocumentos parDocumentos : pares) {
-			if(parDocumentos.esCopia(this.umbral)) {
-				rl.agregarPar(parDocumentos);	
-			}			
+		if(this.finalizado()) {
+			for (ParDocumentos parDocumentos : pares) {
+				if(parDocumentos.esCopia(this.umbral)) {
+					rl.agregarPar(parDocumentos);	
+				}			
+			}
+			rl.setFechaFin(LocalDateTime.now());	
 		}
-		rl.setFechaFin(LocalDateTime.now());
+		
 		return rl;
 	}
 
 
-
+	@JsonProperty("finalizado")
 	public Boolean finalizado() {
 		
-		return this.pares.stream().allMatch( p-> p.finalizado());
+		return (this.rl != null) && this.pares.stream().allMatch( p-> p.finalizado());
 	}
 	
 

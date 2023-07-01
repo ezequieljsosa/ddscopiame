@@ -12,6 +12,7 @@ import ar.utn.dds.copiame.domain.AnalisisDeCopia;
 import ar.utn.dds.copiame.domain.EvaluadorDeCopiaAutomatico;
 import ar.utn.dds.copiame.domain.EvaluadorDeCopiaManual;
 import ar.utn.dds.copiame.domain.Revisor;
+import ar.utn.dds.copiame.mq.MQUtils;
 import ar.utn.dds.copiame.persist.AnalisisJPARepository;
 import ar.utn.dds.copiame.persist.AnalsisRepository;
 import ar.utn.dds.copiame.persist.Lote;
@@ -22,10 +23,12 @@ import io.javalin.http.Handler;
 public class AnalisisAddController implements Handler {
 
 	private EntityManagerFactory entityManagerFactory;
+	private MQUtils mqutils;
 
-	public AnalisisAddController(EntityManagerFactory entityManagerFactory) {
+	public AnalisisAddController(EntityManagerFactory entityManagerFactory, MQUtils mqutils) {
 		super();
 		this.entityManagerFactory = entityManagerFactory;
+		this.mqutils = mqutils; 
 	}
 	
 	@Override
@@ -61,6 +64,9 @@ public class AnalisisAddController implements Handler {
 		repo.save(analisis);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		
+		mqutils.publish(analisis.getId());
+		
 		
 		// Armado de la respuesta
 		Map<String,String> rta = new HashMap<String, String>();
